@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <title>Momonga Cosmic Vibes</title>
 
-    <!-- Play.fun Verification -->
     <meta name="x-ogp-key" content="ddfa63f9-c648-4ee7-8754-eb550892abc7" id="ogp-key-meta" />
-
-    <!-- Play.fun SDK -->
     <script src="https://sdk.play.fun"></script>
 
     <style>
@@ -20,14 +17,8 @@
             padding-top: 50px;
         }
 
-        h1 {
-            font-size: 40px;
-        }
-
-        #score {
-            font-size: 28px;
-            margin: 20px;
-        }
+        h1 { font-size: 40px; }
+        #score { font-size: 28px; margin: 20px; }
 
         button {
             padding: 15px 25px;
@@ -38,20 +29,13 @@
             cursor: pointer;
         }
 
-        .play {
-            background: #00ffcc;
-        }
-
-        .end {
-            background: #ff4d6d;
-            color: white;
-        }
+        .play { background: #00ffcc; }
+        .end { background: #ff4d6d; color: white; }
     </style>
 </head>
 <body>
 
     <h1>🌌 Momonga Cosmic Vibes 🌌</h1>
-
     <p>Click to earn cosmic energy points!</p>
 
     <div id="score">Score: 0</div>
@@ -63,7 +47,6 @@
         let score = 0;
         let sdk;
 
-        // Initialize Play.fun SDK
         window.addEventListener("load", async () => {
             sdk = new OpenGameSDK({
                 ui: { usePointsWidget: true }

@@ -7,12 +7,91 @@
     <!-- Play.fun Verification -->
     <meta name="x-ogp-key" content="ddfa63f9-c648-4ee7-8754-eb550892abc7" id="ogp-key-meta" />
 
+    <!-- Play.fun SDK -->
     <script src="https://sdk.play.fun"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a2e, #0f0f1a);
+            color: white;
+            margin: 0;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        #score {
+            font-size: 28px;
+            margin: 20px;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .play {
+            background: #00ffcc;
+        }
+
+        .end {
+            background: #ff4d6d;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Momonga Cosmic Vibes</h1>
-    <p>Your game will load here.</p>
+    <h1>🌌 Momonga Cosmic Vibes 🌌</h1>
+
+    <p>Click to earn cosmic energy points!</p>
+
+    <div id="score">Score: 0</div>
+
+    <button class="play" onclick="earnPoints()">Earn 100 Points</button>
+    <button class="end" onclick="finishGame()">End Game</button>
+
+    <script>
+        let score = 0;
+        let sdk;
+
+        // Initialize Play.fun SDK
+        window.addEventListener("load", async () => {
+            sdk = new OpenGameSDK({
+                ui: { usePointsWidget: true }
+            });
+
+            await sdk.init({
+                gameId: "95fcc47b-f5db-4e85-ae00-b6d8227c22ef"
+            });
+
+            console.log("Play.fun SDK Ready!");
+        });
+
+        function earnPoints() {
+            score += 100;
+            document.getElementById("score").innerText = "Score: " + score;
+
+            if (sdk) {
+                sdk.addPoints(100);
+            }
+        }
+
+        async function finishGame() {
+            if (sdk) {
+                await sdk.endGame();
+                alert("Game session ended! Points submitted.");
+            }
+        }
+    </script>
 
 </body>
 </html>
